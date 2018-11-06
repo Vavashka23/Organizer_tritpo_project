@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Organizer
@@ -14,11 +7,13 @@ namespace Organizer
     {
 
         private LoginWindow loginWindow;
+        private RegistrationWindow registrationWindow;
 
         public StartWindow()
         {
             InitializeComponent();
             loginWindow = new LoginWindow(this) { Visible = false };
+            registrationWindow = new RegistrationWindow(this) { Visible = false };
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,10 +27,15 @@ namespace Organizer
             loginWindow.Visible = true;
         }
 
+        private void registrationButton_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            registrationWindow.Visible = true;
+        }
+
         private void LoginWindow_FormClose(object sender, FormClosedEventArgs e)
         {
-            loginWindow.Close();
-            this.Close();
+            Application.Exit();
         }
     }
 }

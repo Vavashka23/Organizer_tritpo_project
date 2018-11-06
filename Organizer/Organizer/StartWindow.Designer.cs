@@ -58,6 +58,7 @@
             this.registrationButton.TabIndex = 1;
             this.registrationButton.Text = "Зарегистрироваться";
             this.registrationButton.UseVisualStyleBackColor = true;
+            this.registrationButton.Click += new System.EventHandler(this.registrationButton_Click);
             // 
             // forgotPasswordButton
             // 

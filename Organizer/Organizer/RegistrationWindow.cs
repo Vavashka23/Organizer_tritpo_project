@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace Organizer
 {
-    public partial class LoginWindow : Form
+    public partial class RegistrationWindow : Form
     {
+
         private StartWindow startWindow;
 
-        public LoginWindow(StartWindow start)
+        public RegistrationWindow(StartWindow start)
         {
             startWindow = start;
             InitializeComponent();
@@ -22,11 +23,11 @@ namespace Organizer
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
-            startWindow.Visible = true;
+            this.Hide();
+            startWindow.Show();
         }
 
-        private void LoginWindow_FormClosed(object sender, FormClosedEventArgs e)
+        private void RegistrationWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
