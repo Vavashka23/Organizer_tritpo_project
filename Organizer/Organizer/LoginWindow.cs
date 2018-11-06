@@ -30,5 +30,16 @@ namespace Organizer
         {
             Application.Exit();
         }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            Client cl = new Client();
+            cl.openC();
+            dt = cl.getResp();
+            this.dataGridView1.DataSource = dt;
+
+            cl.closeC();
+        }
     }
 }
