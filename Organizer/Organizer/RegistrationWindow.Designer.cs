@@ -48,7 +48,6 @@
             this.label1.Location = new System.Drawing.Point(165, 131);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(170, 33);
-            this.label1.TabIndex = 0;
             this.label1.Text = "Введите логин:";
             // 
             // label2
@@ -58,7 +57,6 @@
             this.label2.Location = new System.Drawing.Point(165, 245);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(184, 33);
-            this.label2.TabIndex = 1;
             this.label2.Text = "Введите пароль:";
             // 
             // loginEnterBox
@@ -68,7 +66,7 @@
             this.loginEnterBox.MaxLength = 14;
             this.loginEnterBox.Name = "loginEnterBox";
             this.loginEnterBox.Size = new System.Drawing.Size(268, 41);
-            this.loginEnterBox.TabIndex = 2;
+            this.loginEnterBox.TabIndex = 0;
             // 
             // passwordEnterBox
             // 
@@ -78,7 +76,7 @@
             this.passwordEnterBox.Name = "passwordEnterBox";
             this.passwordEnterBox.PasswordChar = '#';
             this.passwordEnterBox.Size = new System.Drawing.Size(268, 41);
-            this.passwordEnterBox.TabIndex = 3;
+            this.passwordEnterBox.TabIndex = 1;
             // 
             // label3
             // 
@@ -87,7 +85,6 @@
             this.label3.Location = new System.Drawing.Point(556, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(301, 33);
-            this.label3.TabIndex = 4;
             this.label3.Text = "Введите секретный вопрос:";
             // 
             // label4
@@ -97,7 +94,6 @@
             this.label4.Location = new System.Drawing.Point(556, 245);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(338, 33);
-            this.label4.TabIndex = 5;
             this.label4.Text = "Введите ответ на ваш вопрос:";
             // 
             // secretEnterBox
@@ -106,7 +102,7 @@
             this.secretEnterBox.Location = new System.Drawing.Point(562, 167);
             this.secretEnterBox.Name = "secretEnterBox";
             this.secretEnterBox.Size = new System.Drawing.Size(338, 41);
-            this.secretEnterBox.TabIndex = 6;
+            this.secretEnterBox.TabIndex = 2;
             // 
             // answerEnterBox
             // 
@@ -114,7 +110,7 @@
             this.answerEnterBox.Location = new System.Drawing.Point(562, 281);
             this.answerEnterBox.Name = "answerEnterBox";
             this.answerEnterBox.Size = new System.Drawing.Size(338, 41);
-            this.answerEnterBox.TabIndex = 7;
+            this.answerEnterBox.TabIndex = 3;
             // 
             // okButton
             // 
@@ -123,7 +119,7 @@
             this.okButton.Location = new System.Drawing.Point(408, 396);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(58, 50);
-            this.okButton.TabIndex = 8;
+            this.okButton.TabIndex = 4;
             this.okButton.Text = "Ок";
             this.okButton.UseVisualStyleBackColor = true;
             // 
@@ -134,7 +130,7 @@
             this.backButton.Location = new System.Drawing.Point(499, 396);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(90, 50);
-            this.backButton.TabIndex = 9;
+            this.backButton.TabIndex = 5;
             this.backButton.Text = "Назад";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);

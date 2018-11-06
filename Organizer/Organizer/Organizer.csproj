@@ -58,6 +58,12 @@
     <Compile Include="RegistrationWindow.Designer.cs">
       <DependentUpon>RegistrationWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="RestorePasswordWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RestorePasswordWindow.Designer.cs">
+      <DependentUpon>RestorePasswordWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="StartWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationWindow.resx">
       <DependentUpon>RegistrationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RestorePasswordWindow.resx">
+      <DependentUpon>RestorePasswordWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartWindow.resx">
       <DependentUpon>StartWindow.cs</DependentUpon>
