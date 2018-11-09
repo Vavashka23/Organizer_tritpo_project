@@ -39,6 +39,7 @@
             this.answerEnterBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -48,6 +49,7 @@
             this.label1.Location = new System.Drawing.Point(165, 131);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(170, 33);
+            this.label1.TabIndex = 9;
             this.label1.Text = "Введите логин:";
             // 
             // label2
@@ -57,13 +59,14 @@
             this.label2.Location = new System.Drawing.Point(165, 245);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(184, 33);
+            this.label2.TabIndex = 8;
             this.label2.Text = "Введите пароль:";
             // 
             // loginEnterBox
             // 
             this.loginEnterBox.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loginEnterBox.Location = new System.Drawing.Point(168, 167);
-            this.loginEnterBox.MaxLength = 14;
+            this.loginEnterBox.MaxLength = 15;
             this.loginEnterBox.Name = "loginEnterBox";
             this.loginEnterBox.Size = new System.Drawing.Size(268, 41);
             this.loginEnterBox.TabIndex = 0;
@@ -72,7 +75,7 @@
             // 
             this.passwordEnterBox.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.passwordEnterBox.Location = new System.Drawing.Point(168, 281);
-            this.passwordEnterBox.MaxLength = 14;
+            this.passwordEnterBox.MaxLength = 15;
             this.passwordEnterBox.Name = "passwordEnterBox";
             this.passwordEnterBox.PasswordChar = '#';
             this.passwordEnterBox.Size = new System.Drawing.Size(268, 41);
@@ -85,6 +88,7 @@
             this.label3.Location = new System.Drawing.Point(556, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(301, 33);
+            this.label3.TabIndex = 7;
             this.label3.Text = "Введите секретный вопрос:";
             // 
             // label4
@@ -94,12 +98,14 @@
             this.label4.Location = new System.Drawing.Point(556, 245);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(338, 33);
+            this.label4.TabIndex = 6;
             this.label4.Text = "Введите ответ на ваш вопрос:";
             // 
             // secretEnterBox
             // 
             this.secretEnterBox.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.secretEnterBox.Location = new System.Drawing.Point(562, 167);
+            this.secretEnterBox.MaxLength = 50;
             this.secretEnterBox.Name = "secretEnterBox";
             this.secretEnterBox.Size = new System.Drawing.Size(338, 41);
             this.secretEnterBox.TabIndex = 2;
@@ -108,6 +114,7 @@
             // 
             this.answerEnterBox.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.answerEnterBox.Location = new System.Drawing.Point(562, 281);
+            this.answerEnterBox.MaxLength = 30;
             this.answerEnterBox.Name = "answerEnterBox";
             this.answerEnterBox.Size = new System.Drawing.Size(338, 41);
             this.answerEnterBox.TabIndex = 3;
@@ -122,6 +129,7 @@
             this.okButton.TabIndex = 4;
             this.okButton.Text = "Ок";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // backButton
             // 
@@ -135,10 +143,20 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.errorLabel.Location = new System.Drawing.Point(168, 535);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 33);
+            this.errorLabel.TabIndex = 10;
+            // 
             // RegistrationWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1012, 681);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.answerEnterBox);
@@ -172,5 +190,6 @@
         private System.Windows.Forms.TextBox answerEnterBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label errorLabel;
     }
 }

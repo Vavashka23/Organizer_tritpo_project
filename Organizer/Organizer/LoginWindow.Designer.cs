@@ -35,8 +35,6 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // loginLabel
@@ -102,19 +100,10 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(61, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(865, 123);
-            this.dataGridView1.TabIndex = 6;
-            // 
             // LoginWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1012, 681);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.passwordTextBox);
@@ -126,7 +115,6 @@
             this.Name = "LoginWindow";
             this.Text = "Organizer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginWindow_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,6 +128,5 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

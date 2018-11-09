@@ -4,8 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{054FDA5E-B683-4E3B-9A1B-1782D7EAB342}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{DED21EEE-7BF3-4D2F-A4A1-A9EE7A33C768}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Organizer</RootNamespace>
     <AssemblyName>Organizer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -33,38 +33,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
     <Compile Include="LoginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginWindow.Designer.cs">
       <DependentUpon>LoginWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="OkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OkForm.Designer.cs">
+      <DependentUpon>OkForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RegistrationWindow.Designer.cs">
       <DependentUpon>RegistrationWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="RestorePasswordWindow.cs">
+    <Compile Include="RestoreWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RestorePasswordWindow.Designer.cs">
-      <DependentUpon>RestorePasswordWindow.cs</DependentUpon>
+    <Compile Include="RestoreWindow.Designer.cs">
+      <DependentUpon>RestoreWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="StartWindow.cs">
       <SubType>Form</SubType>
@@ -72,41 +77,28 @@
     <Compile Include="StartWindow.Designer.cs">
       <DependentUpon>StartWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersLogin.cs" />
+    <Compile Include="UsersRegistration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="LoginWindow.resx">
       <DependentUpon>LoginWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OkForm.resx">
+      <DependentUpon>OkForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationWindow.resx">
       <DependentUpon>RegistrationWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RestorePasswordWindow.resx">
-      <DependentUpon>RestorePasswordWindow.cs</DependentUpon>
+    <EmbeddedResource Include="RestoreWindow.resx">
+      <DependentUpon>RestoreWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartWindow.resx">
       <DependentUpon>StartWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

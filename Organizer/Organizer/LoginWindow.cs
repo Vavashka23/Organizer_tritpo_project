@@ -33,13 +33,40 @@ namespace Organizer
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            Client cl = new Client();
-            cl.openC();
-            dt = cl.getResp();
-            this.dataGridView1.DataSource = dt;
+            if (loginTextBox.Text.Length >= 5 || passwordTextBox.Text.Length >= 8)
+            {
+               /* userReg = new UsersRegistration();
+                string login = this.loginEnterBox.Text;
+                string password = this.passwordEnterBox.Text;
+                string secret = this.secretEnterBox.Text;
+                string answer = this.answerEnterBox.Text;
 
-            cl.closeC();
+                userReg.OpenConnectionToDataBase();
+
+                userReg.InsertDataToBase(login, password, secret, answer);
+
+                userReg.CloseConnectionToDataBase();
+
+                loginEnterBox.Clear();
+                passwordEnterBox.Clear();
+                secretEnterBox.Clear();
+                answerEnterBox.Clear();
+
+                okForm.ShowDialog();
+
+                this.Hide();
+                startWindow.Show();*/
+            }
+            else
+            {
+                /*loginEnterBox.Clear();
+                passwordEnterBox.Clear();
+                secretEnterBox.Clear();
+                answerEnterBox.Clear();
+                Random random = new Random();
+                errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                errorLabel.Text = "Wrong data input! Try again...";*/
+            }
         }
     }
 }
