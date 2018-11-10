@@ -37,7 +37,7 @@ namespace Organizer
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (loginEnterBox.Text.Length >= 5 || passwordEnterBox.Text.Length >= 8 || secretEnterBox.Text.Length >= 5 || answerEnterBox.Text.Length >= 4)
+            if (loginEnterBox.Text.Length >= 5 && passwordEnterBox.Text.Length >= 8 && secretEnterBox.Text.Length >= 5 && answerEnterBox.Text.Length >= 4)
             {
                 userReg = new UsersRegistration();
                 string login = this.loginEnterBox.Text;

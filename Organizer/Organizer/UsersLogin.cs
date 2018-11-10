@@ -27,13 +27,9 @@ namespace Organizer
             connection.Close();
         }
 
-
-
-        /*public string ShowDataBase()
+        public string GetPasswordFromBase(string _login)
         {
-            string request = "SELECT name FROM users";
-
-            connection.Open();
+            string request = string.Format("SELECT password FROM users WHERE login='{0}'", _login);
 
             SqlCommand sqlCommand = new SqlCommand(request, connection);
 
@@ -41,16 +37,15 @@ namespace Organizer
 
             string str = "";
 
-            while (sqlDataReader.Read())
+            while(sqlDataReader.Read())
             {
-                str += sqlDataReader["name"].ToString();
+                str += sqlDataReader["password"].ToString();
             }
+            
 
             sqlDataReader.Close();
 
-            connection.Close();
-
             return str;
-        }*/
+        }
     }
 }

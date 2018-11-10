@@ -13,6 +13,7 @@ namespace Organizer
     public partial class LoginWindow : Form
     {
         private StartWindow startWindow;
+        private UsersLogin usersLogin;
 
         public LoginWindow(StartWindow start)
         {
@@ -33,39 +34,41 @@ namespace Organizer
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (loginTextBox.Text.Length >= 5 || passwordTextBox.Text.Length >= 8)
+            if (loginTextBox.Text.Length >= 5 && passwordTextBox.Text.Length >= 8)
             {
-               /* userReg = new UsersRegistration();
-                string login = this.loginEnterBox.Text;
-                string password = this.passwordEnterBox.Text;
-                string secret = this.secretEnterBox.Text;
-                string answer = this.answerEnterBox.Text;
+                usersLogin = new UsersLogin();
 
-                userReg.OpenConnectionToDataBase();
+                string login = this.loginTextBox.Text;
+                string password = this.passwordTextBox.Text;
 
-                userReg.InsertDataToBase(login, password, secret, answer);
+                usersLogin.OpenConnectionToDataBase();
 
-                userReg.CloseConnectionToDataBase();
+                string truePassword = usersLogin.GetPasswordFromBase(login);
 
-                loginEnterBox.Clear();
-                passwordEnterBox.Clear();
-                secretEnterBox.Clear();
-                answerEnterBox.Clear();
+                usersLogin.CloseConnectionToDataBase();
 
-                okForm.ShowDialog();
+                if (truePassword == password)
+                {
+                    //переход в главное окно
+                }
+                else {
 
-                this.Hide();
-                startWindow.Show();*/
+                    passwordTextBox.Clear();
+                    loginTextBox.Clear();
+
+                    Random random = new Random();
+                    errorLog.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                    errorLog.Text = "Wrong password! Try again...";
+                }
             }
             else
             {
-                /*loginEnterBox.Clear();
-                passwordEnterBox.Clear();
-                secretEnterBox.Clear();
-                answerEnterBox.Clear();
+                passwordTextBox.Clear();
+                loginTextBox.Clear();
+
                 Random random = new Random();
-                errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                errorLabel.Text = "Wrong data input! Try again...";*/
+                errorLog.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                errorLog.Text = "Wrong input! Try again...";
             }
         }
     }
