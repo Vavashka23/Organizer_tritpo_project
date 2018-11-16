@@ -42,7 +42,6 @@ namespace Organizer
                 str += sqlDataReader["password"].ToString();
             }
             
-
             sqlDataReader.Close();
 
             return str;

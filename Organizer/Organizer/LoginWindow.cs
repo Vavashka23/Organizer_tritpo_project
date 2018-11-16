@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Organizer
@@ -14,11 +8,13 @@ namespace Organizer
     {
         private StartWindow startWindow;
         private UsersLogin usersLogin;
+        private MainWindow mainWindow;
 
         public LoginWindow(StartWindow start)
         {
             startWindow = start;
             InitializeComponent();
+            mainWindow = new MainWindow(this) { Visible = false };
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -46,10 +42,11 @@ namespace Organizer
                 string truePassword = usersLogin.GetPasswordFromBase(login);
 
                 usersLogin.CloseConnectionToDataBase();
-
-                if (truePassword == password)
+                
+                if (truePassword.Equals(password))
                 {
-                    //переход в главное окно
+                    this.Visible = false;
+                    mainWindow.Visible = true;
                 }
                 else {
 
@@ -58,7 +55,7 @@ namespace Organizer
 
                     Random random = new Random();
                     errorLog.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                    errorLog.Text = "Wrong password! Try again...";
+                    errorLog.Text = "Wrong login or password! Try again...";
                 }
             }
             else
