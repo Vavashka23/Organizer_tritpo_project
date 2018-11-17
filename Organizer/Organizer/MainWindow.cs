@@ -74,5 +74,19 @@ namespace Organizer
             noteName.Clear();
             descriptionTextBox.Clear();
         }
+
+        private void listOfNotes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.deleteNoteButton.Enabled = true;
+            this.showNoteButton.Enabled = true;
+            this.importantNoteButton.Enabled = true;
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            string st = notesRedactor.DownloadNotes(userLogin);
+            string[] str = st.Split(',');
+            this.listOfNotes.Items.AddRange(str);
+        }
     }
 }

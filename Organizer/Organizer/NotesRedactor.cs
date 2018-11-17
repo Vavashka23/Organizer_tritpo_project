@@ -33,5 +33,34 @@ namespace Organizer
 
             connection.Close();
         }
+
+        public void DeleteNote()
+        {
+
+        }
+
+        public string DownloadNotes(string _login)
+        {
+            string request = string.Format("SELECT noteName FROM {0}", _login);
+
+            connection.Open();
+
+            SqlCommand sqlCommand = new SqlCommand(request, connection);
+
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            string vs = "";
+
+            while (sqlDataReader.Read())
+            {
+                vs += sqlDataReader["noteName"].ToString() + ",";
+            }
+            
+            sqlDataReader.Close();
+
+            connection.Close();
+
+            return vs.Substring(0, vs.Length - 1);
+        }
     }
 }

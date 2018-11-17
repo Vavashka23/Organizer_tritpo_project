@@ -137,6 +137,7 @@
             this.listOfNotes.Name = "listOfNotes";
             this.listOfNotes.Size = new System.Drawing.Size(390, 431);
             this.listOfNotes.TabIndex = 6;
+            this.listOfNotes.SelectedIndexChanged += new System.EventHandler(this.listOfNotes_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -326,6 +327,7 @@
             this.Name = "MainWindow";
             this.Text = "Organizer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).EndInit();
