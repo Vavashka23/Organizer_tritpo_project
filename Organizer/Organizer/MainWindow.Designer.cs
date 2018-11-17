@@ -1,4 +1,6 @@
-﻿namespace Organizer
+﻿using System;
+
+namespace Organizer
 {
     partial class MainWindow
     {
@@ -91,6 +93,7 @@
             this.deleteNoteButton.TabIndex = 1;
             this.deleteNoteButton.Text = "Удалить заметку";
             this.deleteNoteButton.UseVisualStyleBackColor = true;
+            this.deleteNoteButton.Click += new System.EventHandler(this.deleteNoteButton_Click);
             // 
             // importantNoteButton
             // 
@@ -294,10 +297,11 @@
             this.dateTimePicker.CalendarFont = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker.Location = new System.Drawing.Point(12, 113);
-            this.dateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker.MinDate = new System.DateTime(2018, 11, 17, 18, 54, 33, 963);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(337, 41);
             this.dateTimePicker.TabIndex = 9;
+            this.dateTimePicker.Value = new System.DateTime(2018, 11, 17, 18, 54, 33, 963);
             // 
             // errorLabel
             // 

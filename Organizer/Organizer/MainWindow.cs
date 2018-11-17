@@ -88,5 +88,14 @@ namespace Organizer
             string[] str = st.Split(',');
             this.listOfNotes.Items.AddRange(str);
         }
+
+        private void deleteNoteButton_Click(object sender, EventArgs e)
+        {
+            notesRedactor.DeleteNote(userLogin, this.listOfNotes.SelectedItem.ToString());
+            this.listOfNotes.Items.Clear();
+            string st = notesRedactor.DownloadNotes(userLogin);
+            string[] str = st.Split(',');
+            this.listOfNotes.Items.AddRange(str);
+        }
     }
 }

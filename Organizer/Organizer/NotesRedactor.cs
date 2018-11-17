@@ -22,7 +22,6 @@ namespace Organizer
 
             using (SqlCommand cmd = new SqlCommand(sql, connection))
             {
-                // Добавить параметры
                 cmd.Parameters.AddWithValue("@Name", info[0]);
                 cmd.Parameters.AddWithValue("@Date", info[2]);
                 cmd.Parameters.AddWithValue("@Descr", info[1]);
@@ -34,9 +33,20 @@ namespace Organizer
             connection.Close();
         }
 
-        public void DeleteNote()
+        public void DeleteNote(string _login, string _note)
         {
+            string request = string.Format("DELETE FROM {0} WHERE noteName=@noteName", _login);
 
+            connection.Open();
+
+            using (SqlCommand cmd = new SqlCommand(request, connection))
+            {
+                cmd.Parameters.AddWithValue("@noteName", _note);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            connection.Close();
         }
 
         public string DownloadNotes(string _login)
