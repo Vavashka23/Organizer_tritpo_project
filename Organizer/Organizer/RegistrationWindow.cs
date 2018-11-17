@@ -48,6 +48,7 @@ namespace Organizer
                 userReg.OpenConnectionToDataBase();
 
                 userReg.InsertDataToBase(login, password, secret, answer);
+                userReg.CreateNewTable(login);
 
                 userReg.CloseConnectionToDataBase();
 
@@ -57,7 +58,6 @@ namespace Organizer
                 answerEnterBox.Clear();
 
                 okForm.ShowDialog();
-
                 this.Hide();
                 startWindow.Show();
             }

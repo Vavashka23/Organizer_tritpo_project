@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Organizer
@@ -13,12 +6,13 @@ namespace Organizer
     public partial class MainWindow : Form
     {
         private LoginWindow loginWindow;
-        private NotesRedactors notesRedactors;
+        private NotesRedactor notesRedactor;
 
         public MainWindow(LoginWindow login)
         {
             loginWindow = login;
             InitializeComponent();
+            notesRedactor = new NotesRedactor();
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -44,13 +38,7 @@ namespace Organizer
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            notesRedactors = new NotesRedactors();
 
-            string tableName = noteName.Text;
-
-            string res = notesRedactors.CreateNewTable(tableName);
-
-            descriptionTextBox.Text = res;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

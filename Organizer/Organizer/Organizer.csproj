@@ -59,7 +59,7 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="NotesRedactors.cs" />
+    <Compile Include="NotesRedactor.cs" />
     <Compile Include="OkWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -42,6 +42,19 @@ namespace Organizer
             }
         }
 
+        public void CreateNewTable(string _tableName)
+        {
+            string request = string.Format("CREATE TABLE dbo.{0}(" +
+                "noteID int PRIMARY KEY IDENTITY (1,1) NOT NULL," +
+                "noteName nvarchar(30) NOT NULL," +
+                "noteDate datetime NOT NULL," +
+                "noteDescription nvarchar(200)," +
+                "notification int);", _tableName);
+
+            using (SqlCommand sqlCommand = new SqlCommand(request, connection))
+                sqlCommand.ExecuteNonQuery();
+        }
+
         public void CloseConnectionToDataBase()
         {
             connection.Close();

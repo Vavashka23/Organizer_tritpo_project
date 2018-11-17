@@ -21,6 +21,9 @@ namespace Organizer
         {
             this.Visible = false;
             startWindow.Visible = true;
+            this.errorLog.Text = "";
+            this.loginTextBox.Clear();
+            this.passwordTextBox.Clear();
         }
 
         private void LoginWindow_FormClosed(object sender, FormClosedEventArgs e)
