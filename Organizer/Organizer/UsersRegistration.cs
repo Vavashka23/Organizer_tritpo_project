@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 
 namespace Organizer
@@ -49,7 +43,7 @@ namespace Organizer
                 "noteName nvarchar(30) NOT NULL," +
                 "noteDate datetime NOT NULL," +
                 "noteDescription nvarchar(200)," +
-                "notification int);", _tableName);
+                "notification int NOT NULL);", _tableName);
 
             using (SqlCommand sqlCommand = new SqlCommand(request, connection))
                 sqlCommand.ExecuteNonQuery();

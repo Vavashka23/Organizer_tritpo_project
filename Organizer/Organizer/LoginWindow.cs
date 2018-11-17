@@ -49,6 +49,7 @@ namespace Organizer
                 if (truePassword.Equals(password))
                 {
                     this.Visible = false;
+                    mainWindow.GetInformation(login);
                     mainWindow.Visible = true;
                 }
                 else {

@@ -50,6 +50,7 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.notificationComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).BeginInit();
             this.noteGroupBox.SuspendLayout();
@@ -237,9 +238,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 33);
+            this.label2.Size = new System.Drawing.Size(205, 33);
             this.label2.TabIndex = 15;
-            this.label2.Text = "Название:";
+            this.label2.Text = "Название события:";
             // 
             // noteName
             // 
@@ -247,7 +248,7 @@
             this.noteName.Location = new System.Drawing.Point(12, 52);
             this.noteName.MaxLength = 30;
             this.noteName.Name = "noteName";
-            this.noteName.Size = new System.Drawing.Size(202, 41);
+            this.noteName.Size = new System.Drawing.Size(245, 41);
             this.noteName.TabIndex = 14;
             this.noteName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -255,7 +256,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 163);
+            this.label1.Location = new System.Drawing.Point(6, 230);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 33);
             this.label1.TabIndex = 13;
@@ -265,11 +266,11 @@
             // 
             this.descriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.descriptionTextBox.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 199);
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 266);
             this.descriptionTextBox.MaxLength = 200;
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(434, 191);
+            this.descriptionTextBox.Size = new System.Drawing.Size(434, 124);
             this.descriptionTextBox.TabIndex = 12;
             // 
             // notificationComboBox
@@ -277,9 +278,13 @@
             this.notificationComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.notificationComboBox.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notificationComboBox.FormattingEnabled = true;
-            this.notificationComboBox.Location = new System.Drawing.Point(259, 52);
+            this.notificationComboBox.Items.AddRange(new object[] {
+            "Не предупреждать",
+            "Предупредить за 1 день",
+            "Предупредить в день события"});
+            this.notificationComboBox.Location = new System.Drawing.Point(12, 173);
             this.notificationComboBox.Name = "notificationComboBox";
-            this.notificationComboBox.Size = new System.Drawing.Size(187, 41);
+            this.notificationComboBox.Size = new System.Drawing.Size(337, 41);
             this.notificationComboBox.TabIndex = 11;
             this.notificationComboBox.Text = "Оповещение";
             // 
@@ -287,16 +292,26 @@
             // 
             this.dateTimePicker.CalendarFont = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker.Location = new System.Drawing.Point(12, 112);
+            this.dateTimePicker.Location = new System.Drawing.Point(12, 113);
             this.dateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(261, 41);
+            this.dateTimePicker.Size = new System.Drawing.Size(337, 41);
             this.dateTimePicker.TabIndex = 9;
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.errorLabel.Location = new System.Drawing.Point(101, 180);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 33);
+            this.errorLabel.TabIndex = 7;
             // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1012, 681);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.noteGroupBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listOfNotes);
@@ -344,5 +359,6 @@
         private System.Windows.Forms.TextBox noteName;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Label errorLabel;
     }
 }
