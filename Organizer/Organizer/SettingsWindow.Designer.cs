@@ -53,6 +53,7 @@ namespace Organizer
             this.avatarBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.avatarBox.TabIndex = 10;
             this.avatarBox.TabStop = false;
+            this.avatarBox.VisibleChanged += new System.EventHandler(this.avatarBox_VisibleChanged);
             // 
             // UploadFotoButton
             // 
@@ -64,6 +65,7 @@ namespace Organizer
             this.UploadFotoButton.TabIndex = 11;
             this.UploadFotoButton.Text = "Загрузить фото";
             this.UploadFotoButton.UseVisualStyleBackColor = true;
+            this.UploadFotoButton.Click += new System.EventHandler(this.UploadFotoButton_Click);
             // 
             // newNameLabel
             // 
@@ -174,7 +176,7 @@ namespace Organizer
             this.Name = "SettingsWindow";
             this.Text = "Organizer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SettingsWindow_FormClosed);
-            this.Load += new System.EventHandler(this.SettingsWindow_Load);
+            this.Shown += new System.EventHandler(this.SettingsWindow_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

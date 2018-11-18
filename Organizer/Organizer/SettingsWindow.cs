@@ -9,6 +9,7 @@ namespace Organizer
         private MainWindow mainWindow;
         private Settings settings;
         private string login;
+        private string fotoPath;
 
         public SettingsWindow(MainWindow main)
         {
@@ -59,10 +60,33 @@ namespace Organizer
                 errorLabel.Text = "Wrong input! Try again...";
             }
         }
-
-        private void SettingsWindow_Load(object sender, EventArgs e)
+        
+        private void UploadFotoButton_Click(object sender, EventArgs e)
         {
-            errorLabel.Text = settings.DownloadInfo(login);
+            OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Изображения(*.jpg)|*.jpg" };
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                fotoPath = openFileDialog1.FileName;
+
+            settings.DownloadFoto(login, fotoPath);
+
+            avatarBox.Image = settings.GetFoto(login);
+        }
+
+        private void avatarBox_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SettingsWindow_Shown(object sender, EventArgs e)
+        {
+            string st = settings.DownloadInfo(login);
+            string[] str = st.Split(',');
+            this.thisNameLabel.Text = "Текущее имя: " + str[0];
+            this.thisDateLabel.Text = "Текущая дата рождения: " + str[1];
+
+            Image image = settings.GetFoto(login);
+            if (image != null)
+                this.avatarBox.Image = image;
         }
     }
 }

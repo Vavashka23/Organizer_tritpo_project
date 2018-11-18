@@ -79,16 +79,12 @@ namespace Organizer
 
         private void listOfNotes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.deleteNoteButton.Enabled = true;
-            this.showNoteButton.Enabled = true;
-            this.importantNoteButton.Enabled = true;
-        }
-
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-            string st = notesRedactor.DownloadNotes(userLogin);
-            string[] str = st.Split(',');
-            this.listOfNotes.Items.AddRange(str);
+            if(listOfNotes.SelectedIndex != -1)
+            {
+                this.deleteNoteButton.Enabled = true;
+                this.showNoteButton.Enabled = true;
+                this.importantNoteButton.Enabled = true;
+            }
         }
 
         private void deleteNoteButton_Click(object sender, EventArgs e)
@@ -105,6 +101,20 @@ namespace Organizer
             this.Hide();
             settingsWindow.Show();
             settingsWindow.GetLogin(userLogin);
+        }
+
+        private void MainWindow_VisibleChanged(object sender, EventArgs e)
+        {
+            this.listOfNotes.Items.Clear();
+            string st = notesRedactor.DownloadNotes(userLogin);
+            string[] str = st.Split(',');
+            this.listOfNotes.Items.AddRange(str);
+            string user = notesRedactor.GetName(userLogin);
+            if (user.Length > 0)
+                this.nameLabel.Text = user;
+            Image image = notesRedactor.GetFoto(userLogin);
+            if (image != null)
+                this.avatarBox.Image = image;
         }
     }
 }

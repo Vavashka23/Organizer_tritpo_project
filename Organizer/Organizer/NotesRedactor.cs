@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 
 namespace Organizer
 {
@@ -71,6 +74,51 @@ namespace Organizer
             connection.Close();
 
             return vs.Substring(0, vs.Length - 1);
+        }
+
+        public string GetName(string _login)
+        {
+            string request = string.Format("SELECT userName FROM users WHERE login='{0}'", _login); ;
+
+            connection.Open();
+
+            SqlCommand sqlCommand = new SqlCommand(request, connection);
+
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            string vs = "";
+
+            while (sqlDataReader.Read())
+            {
+                vs += sqlDataReader["userName"].ToString();
+            }
+
+            sqlDataReader.Close();
+
+            connection.Close();
+
+            return vs;
+        }
+
+        public Image GetFoto(string _login)
+        {
+            string request = string.Format("SELECT avatar FROM users WHERE login='{0}'", _login);
+
+            SqlCommand sqlCommand = new SqlCommand(request, connection);
+            connection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            if (sqlDataReader.HasRows)
+            {
+                MemoryStream memoryStream = new MemoryStream();
+                foreach (DbDataRecord record in sqlDataReader)
+                    memoryStream.Write((byte[])record["avatar"], 0, ((byte[])record["avatar"]).Length);
+                Image image = Image.FromStream(memoryStream);
+
+                memoryStream.Dispose();
+                connection.Close();
+                return image;
+            }
+            return null;
         }
     }
 }

@@ -332,7 +332,7 @@ namespace Organizer
             this.Name = "MainWindow";
             this.Text = "Organizer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
-            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.VisibleChanged += new System.EventHandler(this.MainWindow_VisibleChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).EndInit();

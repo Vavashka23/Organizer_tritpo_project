@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +41,7 @@ namespace Organizer
 
         public string DownloadInfo(string _login)
         {
-            string request = string.Format("SELECT userName, dateOfBirth FROM users WHERE login={0}", _login);
+            string request = string.Format("SELECT userName, dateOfBirth FROM users WHERE login='{0}'", _login);
 
             connection.Open();
 
@@ -57,7 +61,53 @@ namespace Organizer
 
             connection.Close();
 
-            return vs;
+            return vs.Substring(0, vs.Length - 9);
+        }
+
+        public void DownloadFoto(string _login, string filePath)
+        {
+            string sql = string.Format("UPDATE users SET avatar=@Foto WHERE login=@Login");
+
+            connection.Open();
+
+            SqlParameter sqlParameter = new SqlParameter("@Foto", SqlDbType.VarBinary);
+            Image image = Image.FromFile(filePath);
+            MemoryStream memoryStream = new MemoryStream();
+            image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Bmp);
+            sqlParameter.Value = memoryStream.ToArray();
+
+            using (SqlCommand cmd = new SqlCommand(sql, connection))
+            {
+                cmd.Parameters.Add(sqlParameter);
+                cmd.Parameters.AddWithValue("@Login", _login);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            connection.Close();
+
+            memoryStream.Dispose();
+        }
+
+        public Image GetFoto(string _login)
+        {
+            string request = string.Format("SELECT avatar FROM users WHERE login='{0}'", _login);
+
+            SqlCommand sqlCommand = new SqlCommand(request, connection);
+            connection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            if (sqlDataReader.HasRows)
+            {
+                MemoryStream memoryStream = new MemoryStream();
+                foreach (DbDataRecord record in sqlDataReader)
+                    memoryStream.Write((byte[])record["avatar"], 0, ((byte[])record["avatar"]).Length);
+                Image image = Image.FromStream(memoryStream);
+
+                memoryStream.Dispose();
+                connection.Close();
+                return image;
+            }
+            return null;
         }
     }
 }
