@@ -79,6 +79,7 @@
     <Compile Include="RestorePasswordWindow.Designer.cs">
       <DependentUpon>RestorePasswordWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>

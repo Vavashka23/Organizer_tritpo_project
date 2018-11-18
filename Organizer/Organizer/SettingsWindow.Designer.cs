@@ -34,13 +34,14 @@ namespace Organizer
             this.avatarBox = new System.Windows.Forms.PictureBox();
             this.UploadFotoButton = new System.Windows.Forms.Button();
             this.newNameLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.saveChangesButton = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateChangeButton = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
             this.thisDateLabel = new System.Windows.Forms.Label();
             this.thisNameLabel = new System.Windows.Forms.Label();
+            this.errorLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,13 +75,14 @@ namespace Organizer
             this.newNameLabel.TabIndex = 13;
             this.newNameLabel.Text = "Изменить имя:";
             // 
-            // textBox1
+            // nameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 138);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(207, 41);
-            this.textBox1.TabIndex = 14;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.nameTextBox.Location = new System.Drawing.Point(82, 138);
+            this.nameTextBox.MaxLength = 30;
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(207, 41);
+            this.nameTextBox.TabIndex = 14;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // saveChangesButton
             // 
@@ -93,6 +95,7 @@ namespace Organizer
             this.saveChangesButton.TabIndex = 15;
             this.saveChangesButton.Text = "Сохранить";
             this.saveChangesButton.UseVisualStyleBackColor = true;
+            this.saveChangesButton.Click += new System.EventHandler(this.saveChangesButton_Click);
             // 
             // dateTimePicker1
             // 
@@ -142,17 +145,26 @@ namespace Organizer
             this.thisNameLabel.TabIndex = 21;
             this.thisNameLabel.Text = "Текущее имя:";
             // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Location = new System.Drawing.Point(150, 533);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 33);
+            this.errorLabel.TabIndex = 22;
+            // 
             // SettingsWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1012, 681);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.thisNameLabel);
             this.Controls.Add(this.thisDateLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.dateChangeButton);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.saveChangesButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.newNameLabel);
             this.Controls.Add(this.UploadFotoButton);
             this.Controls.Add(this.avatarBox);
@@ -162,6 +174,7 @@ namespace Organizer
             this.Name = "SettingsWindow";
             this.Text = "Organizer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SettingsWindow_FormClosed);
+            this.Load += new System.EventHandler(this.SettingsWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -173,12 +186,13 @@ namespace Organizer
         private System.Windows.Forms.PictureBox avatarBox;
         private System.Windows.Forms.Button UploadFotoButton;
         private System.Windows.Forms.Label newNameLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Button saveChangesButton;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label dateChangeButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label thisDateLabel;
         private System.Windows.Forms.Label thisNameLabel;
+        private System.Windows.Forms.Label errorLabel;
     }
 }

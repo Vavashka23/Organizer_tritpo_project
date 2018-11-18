@@ -104,6 +104,7 @@ namespace Organizer
         {
             this.Hide();
             settingsWindow.Show();
+            settingsWindow.GetLogin(userLogin);
         }
     }
 }
