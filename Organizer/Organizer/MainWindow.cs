@@ -9,12 +9,14 @@ namespace Organizer
         private LoginWindow loginWindow;
         private NotesRedactor notesRedactor;
         private string userLogin;
+        private SettingsWindow settingsWindow;
 
         public MainWindow(LoginWindow login)
         {
             loginWindow = login;
             InitializeComponent();
             notesRedactor = new NotesRedactor();
+            settingsWindow = new SettingsWindow(this) { Visible = false };
         }
 
         public void GetInformation(string _login)
@@ -96,6 +98,12 @@ namespace Organizer
             string st = notesRedactor.DownloadNotes(userLogin);
             string[] str = st.Split(',');
             this.listOfNotes.Items.AddRange(str);
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            settingsWindow.Show();
         }
     }
 }

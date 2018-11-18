@@ -184,6 +184,7 @@ namespace Organizer
             this.settingsButton.TabIndex = 8;
             this.settingsButton.Text = "Настройки";
             this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // avatarBox
             // 
@@ -297,11 +298,11 @@ namespace Organizer
             this.dateTimePicker.CalendarFont = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker.Location = new System.Drawing.Point(12, 113);
-            this.dateTimePicker.MinDate = new System.DateTime(2018, 11, 17, 18, 54, 33, 963);
+            this.dateTimePicker.MinDate = new System.DateTime(2018, 11, 18, 13, 32, 29, 265);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(337, 41);
             this.dateTimePicker.TabIndex = 9;
-            this.dateTimePicker.Value = new System.DateTime(2018, 11, 17, 18, 54, 33, 963);
+            this.dateTimePicker.Value = new System.DateTime(2018, 11, 18, 13, 32, 29, 266);
             // 
             // errorLabel
             // 
