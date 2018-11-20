@@ -10,6 +10,7 @@ namespace Organizer
         private NotesRedactor notesRedactor;
         private string userLogin;
         private SettingsWindow settingsWindow;
+        private ShowNoteWindow noteWindow;
 
         public MainWindow(LoginWindow login)
         {
@@ -17,6 +18,7 @@ namespace Organizer
             InitializeComponent();
             notesRedactor = new NotesRedactor();
             settingsWindow = new SettingsWindow(this) { Visible = false };
+            noteWindow = new ShowNoteWindow(this) { Visible = false };
         }
 
         public void GetInformation(string _login)
@@ -83,7 +85,6 @@ namespace Organizer
             {
                 this.deleteNoteButton.Enabled = true;
                 this.showNoteButton.Enabled = true;
-                this.importantNoteButton.Enabled = true;
             }
         }
 
@@ -115,6 +116,16 @@ namespace Organizer
             Image image = notesRedactor.GetFoto(userLogin);
             if (image != null)
                 this.avatarBox.Image = image;
+            this.showNoteButton.Enabled = false;
+            this.deleteNoteButton.Enabled = false;
+        }
+
+        private void showNoteButton_Click(object sender, EventArgs e)
+        {
+            noteWindow.GetLogin(userLogin);
+            noteWindow.SetName(this.listOfNotes.SelectedItem.ToString());
+            this.Hide();
+            noteWindow.Show();
         }
     }
 }

@@ -34,7 +34,6 @@ namespace Organizer
             this.AddNoteButton = new System.Windows.Forms.Button();
             this.showNoteButton = new System.Windows.Forms.Button();
             this.deleteNoteButton = new System.Windows.Forms.Button();
-            this.importantNoteButton = new System.Windows.Forms.Button();
             this.searchNotesButton = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.listOfNotes = new System.Windows.Forms.ListBox();
@@ -81,6 +80,7 @@ namespace Organizer
             this.showNoteButton.TabIndex = 2;
             this.showNoteButton.Text = "Просмотр";
             this.showNoteButton.UseVisualStyleBackColor = true;
+            this.showNoteButton.Click += new System.EventHandler(this.showNoteButton_Click);
             // 
             // deleteNoteButton
             // 
@@ -94,18 +94,6 @@ namespace Organizer
             this.deleteNoteButton.Text = "Удалить заметку";
             this.deleteNoteButton.UseVisualStyleBackColor = true;
             this.deleteNoteButton.Click += new System.EventHandler(this.deleteNoteButton_Click);
-            // 
-            // importantNoteButton
-            // 
-            this.importantNoteButton.Enabled = false;
-            this.importantNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.importantNoteButton.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.importantNoteButton.Location = new System.Drawing.Point(422, 107);
-            this.importantNoteButton.Name = "importantNoteButton";
-            this.importantNoteButton.Size = new System.Drawing.Size(206, 50);
-            this.importantNoteButton.TabIndex = 5;
-            this.importantNoteButton.Text = "Важная заметка";
-            this.importantNoteButton.UseVisualStyleBackColor = true;
             // 
             // searchNotesButton
             // 
@@ -323,13 +311,13 @@ namespace Organizer
             this.Controls.Add(this.listOfNotes);
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.searchNotesButton);
-            this.Controls.Add(this.importantNoteButton);
             this.Controls.Add(this.deleteNoteButton);
             this.Controls.Add(this.showNoteButton);
             this.Controls.Add(this.AddNoteButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Organizer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.VisibleChanged += new System.EventHandler(this.MainWindow_VisibleChanged);
@@ -348,7 +336,6 @@ namespace Organizer
         private System.Windows.Forms.Button AddNoteButton;
         private System.Windows.Forms.Button showNoteButton;
         private System.Windows.Forms.Button deleteNoteButton;
-        private System.Windows.Forms.Button importantNoteButton;
         private System.Windows.Forms.Button searchNotesButton;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.ListBox listOfNotes;

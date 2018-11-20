@@ -134,6 +134,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RestorePasswordWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Organizer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RestorePasswordWindow_FormClosed);
             this.ResumeLayout(false);
