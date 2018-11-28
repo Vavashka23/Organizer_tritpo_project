@@ -36,6 +36,27 @@ namespace Organizer
             connection.Close();
         }
 
+        public void CreateNote_History(string _login, string[] info, int num)
+        {
+            string name = _login + "History";
+            string sql = string.Format("Insert Into {0}" +
+                   "(noteName, noteDate, noteDescription, notification) Values(@Name, @Date, @Descr, @Noti)", name);
+
+            connection.Open();
+
+            using (SqlCommand cmd = new SqlCommand(sql, connection))
+            {
+                cmd.Parameters.AddWithValue("@Name", info[0]);
+                cmd.Parameters.AddWithValue("@Date", info[2]);
+                cmd.Parameters.AddWithValue("@Descr", info[1]);
+                cmd.Parameters.AddWithValue("@Noti", num);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            connection.Close();
+        }
+
         public void DeleteNote(string _login, string _note)
         {
             string request = string.Format("DELETE FROM {0} WHERE noteName=@noteName", _login);
@@ -72,8 +93,10 @@ namespace Organizer
             sqlDataReader.Close();
 
             connection.Close();
+            if (vs.Length > 0)
+                return vs.Substring(0, vs.Length - 1);
+            else return "";
 
-            return vs.Substring(0, vs.Length - 1);
         }
 
         public string GetName(string _login)
@@ -105,20 +128,27 @@ namespace Organizer
             string request = string.Format("SELECT avatar FROM users WHERE login='{0}'", _login);
 
             SqlCommand sqlCommand = new SqlCommand(request, connection);
-            connection.Open();
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            if (sqlDataReader.HasRows)
+            try
             {
-                MemoryStream memoryStream = new MemoryStream();
-                foreach (DbDataRecord record in sqlDataReader)
-                    memoryStream.Write((byte[])record["avatar"], 0, ((byte[])record["avatar"]).Length);
-                Image image = Image.FromStream(memoryStream);
+                connection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                if (sqlDataReader.HasRows)
+                {
+                    MemoryStream memoryStream = new MemoryStream();
+                    foreach (DbDataRecord record in sqlDataReader)
+                        memoryStream.Write((byte[])record["avatar"], 0, ((byte[])record["avatar"]).Length);
+                    Image image = Image.FromStream(memoryStream);
 
-                memoryStream.Dispose();
+                    memoryStream.Dispose();
+                    connection.Close();
+                    return image;
+                }
+                return null;
+            }catch(Exception e)
+            {
                 connection.Close();
-                return image;
+                return null;
             }
-            return null;
         }
 
         public string[] Search(string[] _list, string _word)

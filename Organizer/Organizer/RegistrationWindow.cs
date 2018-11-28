@@ -43,6 +43,7 @@ namespace Organizer
 
                 userReg.InsertDataToBase(login, password, secret, answer);
                 userReg.CreateNewTable(login);
+                userReg.CreateHistoryTable(login);
 
                 userReg.CloseConnectionToDataBase();
 

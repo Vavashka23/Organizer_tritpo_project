@@ -49,6 +49,20 @@ namespace Organizer
                 sqlCommand.ExecuteNonQuery();
         }
 
+        public void CreateHistoryTable(string _tableName)
+        {
+            string name = _tableName + "History";
+            string request = string.Format("CREATE TABLE dbo.{0}(" +
+                "noteID int PRIMARY KEY IDENTITY (1,1) NOT NULL," +
+                "noteName nvarchar(30) NOT NULL," +
+                "noteDate datetime NOT NULL," +
+                "noteDescription nvarchar(200)," +
+                "notification int NOT NULL);", name);
+
+            using (SqlCommand sqlCommand = new SqlCommand(request, connection))
+                sqlCommand.ExecuteNonQuery();
+        }
+
         public void CloseConnectionToDataBase()
         {
             connection.Close();

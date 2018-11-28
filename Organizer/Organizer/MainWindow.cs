@@ -63,6 +63,7 @@ namespace Organizer
             {
                 errorLabel.Text = "";
                 notesRedactor.CreateNote(userLogin, noteInfo, notificationNum);
+                notesRedactor.CreateNote_History(userLogin, noteInfo, notificationNum);
                 this.listOfNotes.Items.Add(noteInfo[0]);
                 noteGroupBox.Visible = false;
                 AddNoteButton.Enabled = true;
@@ -108,8 +109,11 @@ namespace Organizer
         {
             this.listOfNotes.Items.Clear();
             string st = notesRedactor.DownloadNotes(userLogin);
-            string[] str = st.Split(',');
-            this.listOfNotes.Items.AddRange(str);
+            if (st.Length > 0)
+            {
+                string[] str = st.Split(',');
+                this.listOfNotes.Items.AddRange(str);
+            }
             string user = notesRedactor.GetName(userLogin);
             if (user.Length > 0)
                 this.nameLabel.Text = user;
