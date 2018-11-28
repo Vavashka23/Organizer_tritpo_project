@@ -127,5 +127,26 @@ namespace Organizer
             this.Hide();
             noteWindow.Show();
         }
+
+        private void searchNotesButton_Click(object sender, EventArgs e)
+        {
+            if (this.searchTextBox.TextLength > 0)
+            {
+                string st = notesRedactor.DownloadNotes(userLogin);
+                string[] str = st.Split(',');
+
+                string[] list = notesRedactor.Search(str, this.searchTextBox.Text);
+
+                this.listOfNotes.Items.Clear();
+                this.listOfNotes.Items.AddRange(list);
+            }
+            else
+            {
+                this.listOfNotes.Items.Clear();
+                string st = notesRedactor.DownloadNotes(userLogin);
+                string[] str = st.Split(',');
+                this.listOfNotes.Items.AddRange(str);
+            }
+        }
     }
 }

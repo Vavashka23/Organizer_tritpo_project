@@ -120,5 +120,15 @@ namespace Organizer
             }
             return null;
         }
+
+        public string[] Search(string[] _list, string _word)
+        {
+            string newListString = "";
+            foreach (var s in _list)
+                if (s.Contains(_word))
+                    newListString += s + ",";
+            newListString.Substring(0, newListString.Length - 1);
+            return newListString.Split(',');
+        }
     }
 }

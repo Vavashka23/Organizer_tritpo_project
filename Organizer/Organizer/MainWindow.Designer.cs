@@ -106,6 +106,7 @@ namespace Organizer
             this.searchNotesButton.TabIndex = 4;
             this.searchNotesButton.Text = "Поиск";
             this.searchNotesButton.UseVisualStyleBackColor = true;
+            this.searchNotesButton.Click += new System.EventHandler(this.searchNotesButton_Click);
             // 
             // searchTextBox
             // 
