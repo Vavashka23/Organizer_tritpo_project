@@ -10,6 +10,7 @@ namespace Organizer
         private Settings settings;
         private string login;
         private string fotoPath;
+        private Random random = new Random();
 
         public SettingsWindow(MainWindow main)
         {
@@ -42,7 +43,7 @@ namespace Organizer
 
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
-            if (this.nameTextBox.Text.Length > 3 && this.dateTimePicker1.Value != DateTime.Now)
+            if (nameTextBox.Text.Length > 3 && dateTimePicker1.Value != DateTime.Now && newPassword.Text.Length >= 8)
             {
                 string newName = this.nameTextBox.Text;
                 string date = this.dateTimePicker1.Value.ToString();
@@ -55,7 +56,6 @@ namespace Organizer
             }
             else
             {
-                Random random = new Random();
                 errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
                 errorLabel.Text = "Wrong input! Try again...";
             }
@@ -68,8 +68,8 @@ namespace Organizer
                 fotoPath = openFileDialog1.FileName;
 
             settings.DownloadFoto(login, fotoPath);
-
-            avatarBox.Image = settings.GetFoto(login);
+            if(settings.GetFoto(login) != null)
+                avatarBox.Image = settings.GetFoto(login);
         }
 
         private void avatarBox_VisibleChanged(object sender, EventArgs e)
@@ -80,13 +80,42 @@ namespace Organizer
         private void SettingsWindow_Shown(object sender, EventArgs e)
         {
             string st = settings.DownloadInfo(login);
-            string[] str = st.Split(',');
-            this.thisNameLabel.Text = "Текущее имя: " + str[0];
-            this.thisDateLabel.Text = "Текущая дата рождения: " + str[1];
-
+            if (st != null)
+            {
+                string[] str = st.Split(',');
+                this.thisNameLabel.Text = "Текущее имя: " + str[0];
+                this.thisDateLabel.Text = "Текущая дата рождения: " + str[1];
+            }
             Image image = settings.GetFoto(login);
             if (image != null)
                 this.avatarBox.Image = image;
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            string old = this.oldPassword.Text;
+            string passw = this.newPassword.Text;
+            if(old.Length >=8 && passw.Length >= 8 && !old.Equals(passw))
+            {
+                string rightPassw = settings.GetPassword(login);
+                if(old.Equals(rightPassw))
+                    settings.ChangePassword(passw, login);
+                else
+                {
+                    errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                    errorLabel.Text = "Wrong old password! Try again...";
+                }
+                
+                errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                errorLabel.Text = "Succsess change";
+                this.oldPassword.Clear();
+                this.newPassword.Clear();
+            }
+            else
+            {
+                errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                errorLabel.Text = "Wrong passwords input! Try again...";
+            }
         }
     }
 }

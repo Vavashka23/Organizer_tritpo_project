@@ -10,6 +10,7 @@ namespace Organizer
         private StartWindow startWindow;
         private UsersRegistration userReg;
         private OkForm okForm;
+        private Random random = new Random();
 
         public RegistrationWindow(StartWindow start)
         {
@@ -41,8 +42,22 @@ namespace Organizer
 
                 userReg.OpenConnectionToDataBase();
 
+
+                int res = userReg.CreateNewTable(login);
+
+                if (res == 1)
+                {
+                    loginEnterBox.Clear();
+                    passwordEnterBox.Clear();
+                    secretEnterBox.Clear();
+                    answerEnterBox.Clear();
+                    errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                    errorLabel.Text = "Wrong data input! Try again...";
+                    return;
+                }
+
                 userReg.InsertDataToBase(login, password, secret, answer);
-                userReg.CreateNewTable(login);
+
                 userReg.CreateHistoryTable(login);
 
                 userReg.CloseConnectionToDataBase();
@@ -62,9 +77,8 @@ namespace Organizer
                 passwordEnterBox.Clear();
                 secretEnterBox.Clear();
                 answerEnterBox.Clear();
-                Random random = new Random();
                 errorLabel.ForeColor = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                errorLabel.Text = "Wrong data input! Try again...";
+                errorLabel.Text = "Wrong login or password! Try again...";
             }
 
         }

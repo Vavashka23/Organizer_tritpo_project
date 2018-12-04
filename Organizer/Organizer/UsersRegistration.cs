@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 
 
 namespace Organizer
@@ -36,17 +37,26 @@ namespace Organizer
             }
         }
 
-        public void CreateNewTable(string _tableName)
+        public int CreateNewTable(string _tableName)
         {
-            string request = string.Format("CREATE TABLE dbo.{0}(" +
-                "noteID int PRIMARY KEY IDENTITY (1,1) NOT NULL," +
-                "noteName nvarchar(30) NOT NULL," +
-                "noteDate datetime NOT NULL," +
-                "noteDescription nvarchar(200)," +
-                "notification int NOT NULL);", _tableName);
+            try
+            {
+                string request = string.Format("CREATE TABLE dbo.{0}(" +
+                    "noteID int PRIMARY KEY IDENTITY (1,1) NOT NULL," +
+                    "noteName nvarchar(30) NOT NULL," +
+                    "noteDate datetime NOT NULL," +
+                    "noteDescription nvarchar(200)," +
+                    "notification int NOT NULL);", _tableName);
 
-            using (SqlCommand sqlCommand = new SqlCommand(request, connection))
-                sqlCommand.ExecuteNonQuery();
+                using (SqlCommand sqlCommand = new SqlCommand(request, connection))
+                    sqlCommand.ExecuteNonQuery();
+
+                return 0;
+            }
+            catch(Exception e)
+            {
+                return 1;
+            }
         }
 
         public void CreateHistoryTable(string _tableName)

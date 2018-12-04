@@ -52,6 +52,7 @@ namespace Organizer
             this.notificationComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).BeginInit();
             this.noteGroupBox.SuspendLayout();
@@ -153,6 +154,7 @@ namespace Organizer
             this.aboutButton.TabIndex = 7;
             this.aboutButton.Text = "Справка";
             this.aboutButton.UseVisualStyleBackColor = true;
+            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
             // 
             // nameLabel
             // 
@@ -302,10 +304,23 @@ namespace Organizer
             this.errorLabel.Size = new System.Drawing.Size(0, 33);
             this.errorLabel.TabIndex = 7;
             // 
+            // exitButton
+            // 
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.exitButton.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.exitButton.Location = new System.Drawing.Point(492, 107);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(136, 50);
+            this.exitButton.TabIndex = 8;
+            this.exitButton.Text = "Выйти";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1012, 681);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.noteGroupBox);
             this.Controls.Add(this.groupBox1);
@@ -355,5 +370,6 @@ namespace Organizer
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Button exitButton;
     }
 }

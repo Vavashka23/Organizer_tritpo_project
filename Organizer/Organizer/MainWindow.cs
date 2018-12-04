@@ -11,6 +11,7 @@ namespace Organizer
         private string userLogin;
         private SettingsWindow settingsWindow;
         private ShowNoteWindow noteWindow;
+        private About about = new About();
 
         public MainWindow(LoginWindow login)
         {
@@ -151,6 +152,17 @@ namespace Organizer
                 string[] str = st.Split(',');
                 this.listOfNotes.Items.AddRange(str);
             }
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            loginWindow.Show();
+        }
+
+        private void aboutButton_Click(object sender, EventArgs e)
+        {
+            about.ShowDialog();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -34,9 +35,26 @@ namespace Organizer
             connection.Close();
         }
 
-        public string DownloadInfo(string _login)
+        public void ChangePassword(string _password, string _login)
         {
-            string request = string.Format("SELECT userName, dateOfBirth FROM users WHERE login='{0}'", _login);
+            string sql = string.Format("UPDATE users SET password=@Passw WHERE login=@Login");
+
+            connection.Open();
+
+            using (SqlCommand cmd = new SqlCommand(sql, connection))
+            {
+                cmd.Parameters.AddWithValue("@Passw", _password);
+                cmd.Parameters.AddWithValue("@Login", _login);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            connection.Close();
+        }
+
+        public string GetPassword(string _login)
+        {
+            string request = string.Format("SELECT password FROM users WHERE login='{0}'", _login);
 
             connection.Open();
 
@@ -44,19 +62,51 @@ namespace Organizer
 
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-            string vs = "";
+            string str = "";
 
             while (sqlDataReader.Read())
             {
-                vs += sqlDataReader["userName"].ToString() + ",";
-                vs += sqlDataReader["dateOfBirth"].ToString() + ",";
+                str += sqlDataReader["password"].ToString();
             }
 
             sqlDataReader.Close();
 
             connection.Close();
 
-            return vs.Substring(0, vs.Length - 9);
+            return str;
+        }
+
+        public string DownloadInfo(string _login)
+        {
+            try
+            {
+                string request = string.Format("SELECT userName, dateOfBirth FROM users WHERE login='{0}'", _login);
+
+                connection.Open();
+
+                SqlCommand sqlCommand = new SqlCommand(request, connection);
+
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                string vs = "";
+
+                while (sqlDataReader.Read())
+                {
+                    vs += sqlDataReader["userName"].ToString() + ",";
+                    vs += sqlDataReader["dateOfBirth"].ToString() + ",";
+                }
+
+                sqlDataReader.Close();
+
+                connection.Close();
+
+                return vs.Substring(0, vs.Length - 9);
+
+            } catch(Exception e)
+            {
+                connection.Close();
+                return null;
+            }
         }
 
         public void DownloadFoto(string _login, string filePath)
@@ -86,23 +136,30 @@ namespace Organizer
 
         public Image GetFoto(string _login)
         {
-            string request = string.Format("SELECT avatar FROM users WHERE login='{0}'", _login);
-
-            SqlCommand sqlCommand = new SqlCommand(request, connection);
-            connection.Open();
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            if (sqlDataReader.HasRows)
+            try
             {
-                MemoryStream memoryStream = new MemoryStream();
-                foreach (DbDataRecord record in sqlDataReader)
-                    memoryStream.Write((byte[])record["avatar"], 0, ((byte[])record["avatar"]).Length);
-                Image image = Image.FromStream(memoryStream);
+                string request = string.Format("SELECT avatar FROM users WHERE login='{0}'", _login);
 
-                memoryStream.Dispose();
+                SqlCommand sqlCommand = new SqlCommand(request, connection);
+                connection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                if (sqlDataReader.HasRows)
+                {
+                    MemoryStream memoryStream = new MemoryStream();
+                    foreach (DbDataRecord record in sqlDataReader)
+                        memoryStream.Write((byte[])record["avatar"], 0, ((byte[])record["avatar"]).Length);
+                    Image image = Image.FromStream(memoryStream);
+
+                    memoryStream.Dispose();
+                    connection.Close();
+                    return image;
+                }
+                return null;
+            }catch(Exception e)
+            {
                 connection.Close();
-                return image;
+                return null;
             }
-            return null;
         }
     }
 }
