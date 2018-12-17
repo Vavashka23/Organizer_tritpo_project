@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Organizer
 {
-    class NotesRedactor
+    public class NotesRedactor
     {
         private static string connectionString = @"Data Source = DESKTOP-HJR84CI\SADSADL;Initial Catalog = OrganizerDataBase; Integrated Security = True";
         private static SqlConnection connection;
@@ -153,12 +153,19 @@ namespace Organizer
 
         public string[] Search(string[] _list, string _word)
         {
-            string newListString = "";
-            foreach (var s in _list)
-                if (s.Contains(_word))
-                    newListString += s + ",";
-            newListString.Substring(0, newListString.Length - 1);
-            return newListString.Split(',');
+            try
+            {
+                string newListString = "";
+                foreach (var s in _list)
+                    if (s.Contains(_word))
+                        newListString += s + ",";
+                newListString.Substring(0, newListString.Length - 1);
+                return newListString.Split(',');
+            }catch(Exception e)
+            {
+                string[] vs = {""};
+                return vs;
+            }
         }
     }
 }

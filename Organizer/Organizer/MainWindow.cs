@@ -141,9 +141,11 @@ namespace Organizer
                 string[] str = st.Split(',');
 
                 string[] list = notesRedactor.Search(str, this.searchTextBox.Text);
-
-                this.listOfNotes.Items.Clear();
-                this.listOfNotes.Items.AddRange(list);
+                if (list[0] != "")
+                {
+                    this.listOfNotes.Items.Clear();
+                    this.listOfNotes.Items.AddRange(list);
+                }
             }
             else
             {

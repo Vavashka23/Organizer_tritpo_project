@@ -111,27 +111,34 @@ namespace Organizer
 
         public void DownloadFoto(string _login, string filePath)
         {
-            string sql = string.Format("UPDATE users SET avatar=@Foto WHERE login=@Login");
-
-            connection.Open();
-
-            SqlParameter sqlParameter = new SqlParameter("@Foto", SqlDbType.VarBinary);
-            Image image = Image.FromFile(filePath);
-            MemoryStream memoryStream = new MemoryStream();
-            image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Bmp);
-            sqlParameter.Value = memoryStream.ToArray();
-
-            using (SqlCommand cmd = new SqlCommand(sql, connection))
+            try
             {
-                cmd.Parameters.Add(sqlParameter);
-                cmd.Parameters.AddWithValue("@Login", _login);
+                string sql = string.Format("UPDATE users SET avatar=@Foto WHERE login=@Login");
 
-                cmd.ExecuteNonQuery();
+                connection.Open();
+
+                SqlParameter sqlParameter = new SqlParameter("@Foto", SqlDbType.VarBinary);
+                Image image = Image.FromFile(filePath);
+                MemoryStream memoryStream = new MemoryStream();
+                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Bmp);
+                sqlParameter.Value = memoryStream.ToArray();
+
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
+                {
+                    cmd.Parameters.Add(sqlParameter);
+                    cmd.Parameters.AddWithValue("@Login", _login);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                connection.Close();
+
+                memoryStream.Dispose();
+            }catch(Exception e)
+            {
+                connection.Close();
+                return;
             }
-
-            connection.Close();
-
-            memoryStream.Dispose();
         }
 
         public Image GetFoto(string _login)
